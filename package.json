@@ -4,10 +4,10 @@
   "version": "0.0.72",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host --port 5173",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "start": "vite preview --port 5173"
   },
   "dependencies": {
     "@designcombo/events": "^1.0.2",
