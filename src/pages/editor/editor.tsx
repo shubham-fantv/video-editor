@@ -72,7 +72,6 @@ const App = () => {
 
         const data = await response.json();
         setVideoUrl(data.data.videoUrl);
-        console.log(videoUrl);
         const startingProject = {
           id: "j1LfwJAoR9G3IhjE",
           fps: 30,
@@ -108,9 +107,7 @@ const App = () => {
                   y: 0,
                   blur: 0,
                 },
-                top: "300px",
-                left: "60px",
-                transform: "scale(3)",
+                transform: "scale(2)",
                 blur: 0,
                 brightness: 100,
                 flipX: false,
@@ -159,8 +156,8 @@ const App = () => {
                   y: 0,
                   blur: 0,
                 },
-                top: "640px",
-                left: "360px",
+                top: "360px",
+                left: "640px",
                 transform: "scale(3)",
                 blur: 0,
                 brightness: 100,
