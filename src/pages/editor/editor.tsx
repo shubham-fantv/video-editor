@@ -52,7 +52,6 @@ type Project = {
 const App = () => {
   const timelinePanelRef = useRef<ImperativePanelHandle>(null);
   const { timeline, playerRef } = useStore();
-  const [videoUrl, setVideoUrl] = useState(null);
   const [project, setProject] = useState<Project | null>(null);
   useTimelineEvents();
   const [loading, setLoading] = useState(true);
@@ -71,7 +70,6 @@ const App = () => {
         });
 
         const data = await response.json();
-        setVideoUrl(data.data.videoUrl);
         const startingProject = {
           id: "j1LfwJAoR9G3IhjE",
           fps: 30,
