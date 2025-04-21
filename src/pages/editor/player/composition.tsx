@@ -2,15 +2,10 @@ import useStore from "@/pages/editor/store/use-store";
 import { SequenceItem } from "./sequence-item";
 import { useEffect, useState } from "react";
 import { dispatch, filter, subject } from "@designcombo/events";
-import {
-  EDIT_OBJECT,
-  EDIT_TEMPLATE_ITEM,
-  ENTER_EDIT_MODE,
-} from "@designcombo/state";
+import { EDIT_OBJECT, EDIT_TEMPLATE_ITEM, ENTER_EDIT_MODE } from "@designcombo/state";
 import { merge } from "lodash";
 import { groupTrackItems } from "../utils/track-items";
 import { calculateTextHeight } from "../utils/text";
-import { Transitions } from "./presentations";
 
 const Composition = () => {
   const [editableTextId, setEditableTextId] = useState<string | null>(null);
@@ -20,7 +15,6 @@ const Composition = () => {
     fps,
     trackItemDetailsMap,
     sceneMoveableRef,
-    size,
     transitionsMap,
   } = useStore();
   const mergedTrackItemsDeatilsMap = merge(trackItemsMap, trackItemDetailsMap);
@@ -32,8 +26,7 @@ const Composition = () => {
 
   const handleTextChange = (id: string, _: string) => {
     const elRef = document.querySelector(`.id-${id}`) as HTMLDivElement;
-    const textDiv = elRef.firstElementChild?.firstElementChild
-      ?.firstElementChild as HTMLDivElement;
+    const textDiv = elRef.firstElementChild?.firstElementChild?.firstElementChild as HTMLDivElement;
 
     const {
       fontFamily,
@@ -65,8 +58,7 @@ const Composition = () => {
 
   const onTextBlur = (id: string, _: string) => {
     const elRef = document.querySelector(`.id-${id}`) as HTMLDivElement;
-    const textDiv = elRef.firstElementChild?.firstElementChild
-      ?.firstElementChild as HTMLDivElement;
+    const textDiv = elRef.firstElementChild?.firstElementChild?.firstElementChild as HTMLDivElement;
     const {
       fontFamily,
       fontSize,
@@ -103,17 +95,13 @@ const Composition = () => {
 
   //   handle track and track item events - updates
   useEffect(() => {
-    const stateEvents = subject.pipe(
-      filter(({ key }) => key.startsWith(ENTER_EDIT_MODE)),
-    );
+    const stateEvents = subject.pipe(filter(({ key }) => key.startsWith(ENTER_EDIT_MODE)));
 
     const subscription = stateEvents.subscribe((obj) => {
       if (obj.key === ENTER_EDIT_MODE) {
         if (editableTextId) {
           // get element by  data-text-id={id}
-          const element = document.querySelector(
-            `[data-text-id="${editableTextId}"]`,
-          );
+          const element = document.querySelector(`[data-text-id="${editableTextId}"]`);
           if (trackItemIds.includes(editableTextId)) {
             dispatch(EDIT_OBJECT, {
               payload: {

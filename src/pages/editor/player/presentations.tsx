@@ -21,10 +21,7 @@ interface TransitionOptions {
   direction?: SlideDirection;
 }
 
-export const Transitions: Record<
-  string,
-  (options: TransitionOptions) => JSX.Element
-> = {
+export const Transitions: Record<string, (options: TransitionOptions) => JSX.Element> = {
   none: ({ id }: TransitionOptions) => (
     <TransitionSeries.Transition
       key={id}
@@ -91,12 +88,7 @@ export const Transitions: Record<
       timing={linearTiming({ durationInFrames })}
     />
   ),
-  slidingDoors: ({
-    width,
-    height,
-    durationInFrames,
-    id,
-  }: TransitionOptions) => (
+  slidingDoors: ({ width, height, durationInFrames, id }: TransitionOptions) => (
     <TransitionSeries.Transition
       key={id}
       presentation={slidingDoors({ width, height })}

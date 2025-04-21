@@ -9,14 +9,9 @@ import StateManager, { DESIGN_LOAD } from "@designcombo/state";
 import { ControlItem } from "./control-item";
 import ControlList from "./control-list";
 import { useEffect, useRef, useState } from "react";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { ImperativePanelHandle } from "react-resizable-panels";
 import { dispatch } from "@designcombo/events";
-import { emptyDesignWidthMagneticTrack } from "./data";
 
 const stateManager = new StateManager({
   size: {
@@ -84,15 +79,7 @@ const App = () => {
           tracks: [
             {
               id: "k5g9E_w1gSC-goCzJK9nB",
-              accepts: [
-                "text",
-                "audio",
-                "helper",
-                "video",
-                "image",
-                "caption",
-                "template",
-              ],
+              accepts: ["text", "audio", "helper", "video", "image", "caption", "template"],
               type: "video",
               items: ["RZUICjMxa7r3tM8K"],
               magnetic: false,
@@ -132,8 +119,7 @@ const App = () => {
                 visibility: "visible",
               },
               metadata: {
-                previewUrl:
-                  "https://cdn.designcombo.dev/thumbnails/Happiness-shouldnt-depend.png",
+                previewUrl: "https://cdn.designcombo.dev/thumbnails/Happiness-shouldnt-depend.png",
               },
             },
           },
@@ -143,8 +129,7 @@ const App = () => {
             RZUICjMxa7r3tM8K: {
               id: "RZUICjMxa7r3tM8K",
               metadata: {
-                previewUrl:
-                  "https://cdn.designcombo.dev/thumbnails/Happiness-shouldnt-depend.png",
+                previewUrl: "https://cdn.designcombo.dev/thumbnails/Happiness-shouldnt-depend.png",
               },
               trim: {
                 from: 0,

@@ -2,7 +2,6 @@ import useLayoutStore from "../store/use-layout-store";
 import { Texts } from "./texts";
 import { Uploads } from "./uploads";
 import { Audios } from "./audios";
-import { Elements } from "./elements";
 import { Images } from "./images";
 import { Videos } from "./videos";
 import { X } from "lucide-react";
