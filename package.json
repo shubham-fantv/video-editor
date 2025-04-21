@@ -7,7 +7,7 @@
     "dev": "vite --host --port 5173",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "start": "vite preview --port 5173"
+    "start": "vite preview --port 5173 --host 0.0.0.0"
   },
   "dependencies": {
     "@designcombo/events": "^1.0.2",
