@@ -91,9 +91,10 @@ const App = () => {
             RZUICjMxa7r3tM8K: {
               type: "video",
               details: {
-                width: 640,
-                height: 300,
+                width: data.data.aspectRatio == "9:16" ? 230 : 640,
+                height: 460,
                 opacity: 100,
+                objectFit: "contain",
                 src: data.data.videoUrl,
                 volume: 100,
                 borderRadius: 0,
@@ -105,7 +106,7 @@ const App = () => {
                   y: 0,
                   blur: 0,
                 },
-                transform: "scale(2)",
+                transform: "scale(2.6)",
                 blur: 0,
                 brightness: 100,
                 flipX: false,
@@ -142,6 +143,8 @@ const App = () => {
               details: {
                 width: 360,
                 height: 640,
+                objectFit: "contain",
+                aspectRatio: "9:16",
                 opacity: 100,
                 src: data.data.videoUrl,
                 volume: 100,
@@ -242,9 +245,9 @@ const App = () => {
           </ResizablePanel>
           <ResizableHandle />
           <ResizablePanel
-            className="min-h-[50px]"
+            className="min-h-[80px]"
             ref={timelinePanelRef}
-            defaultSize={30}
+            defaultSize={45}
             onResize={handleTimelineResize}
           >
             {playerRef && <Timeline stateManager={stateManager} />}

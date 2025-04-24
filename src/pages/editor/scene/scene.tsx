@@ -1,6 +1,6 @@
 import { Player } from "../player";
 import Viewer from "@interactify/infinite-viewer";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import useStore from "@/pages/editor/store/use-store";
 import StateManager from "@designcombo/state";
 import SceneEmpty from "./empty";
@@ -8,15 +8,36 @@ import Board from "./board";
 import useZoom from "../hooks/use-zoom";
 import { SceneInteractions } from "./interactions";
 
-export default function Scene({
-  stateManager,
-}: {
-  stateManager: StateManager;
-}) {
+export default function Scene({ stateManager }: { stateManager: StateManager }) {
   const viewerRef = useRef<Viewer>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { size, trackItemIds } = useStore();
+  console.log("🚀 ~ Scene ~ trackItemIds:", trackItemIds, size);
   const { zoom, handlePinch } = useZoom(containerRef, viewerRef, size);
+
+  useEffect(() => {
+    const viewer = viewerRef.current;
+
+    if (viewer) {
+      const container = viewer.getContainer?.();
+
+      const preventScroll = (e: WheelEvent | TouchEvent) => {
+        e.preventDefault();
+      };
+
+      if (container) {
+        container.addEventListener("wheel", preventScroll, { passive: false });
+        container.addEventListener("touchmove", preventScroll, { passive: false });
+      }
+
+      return () => {
+        if (container) {
+          container.removeEventListener("wheel", preventScroll);
+          container.removeEventListener("touchmove", preventScroll);
+        }
+      };
+    }
+  }, []);
 
   return (
     <div
@@ -31,7 +52,7 @@ export default function Scene({
       {trackItemIds.length === 0 && <SceneEmpty />}
       <Viewer
         ref={viewerRef}
-        className="player-container bg-scene"
+        className="player-container bg-scene overflow-hidden"
         displayHorizontalScroll={false}
         displayVerticalScroll={false}
         zoom={zoom}
